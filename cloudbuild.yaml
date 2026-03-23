@@ -4,8 +4,6 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'gcr.io/$PROJECT_ID/hostflow-agent:$SHORT_SHA'
-      - '-t'
       - 'gcr.io/$PROJECT_ID/hostflow-agent:latest'
       - '.'
 
@@ -13,8 +11,7 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - '--all-tags'
-      - 'gcr.io/$PROJECT_ID/hostflow-agent'
+      - 'gcr.io/$PROJECT_ID/hostflow-agent:latest'
 
   # Deploy to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -24,7 +21,7 @@ steps:
       - 'deploy'
       - 'hostflow-agent'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/hostflow-agent:$SHORT_SHA'
+      - 'gcr.io/$PROJECT_ID/hostflow-agent:latest'
       - '--region'
       - 'asia-southeast1'
       - '--platform'
@@ -42,4 +39,4 @@ steps:
       - '60'
 
 images:
-  - 'gcr.io/$PROJECT_ID/hostflow-agent'
+  - 'gcr.io/$PROJECT_ID/hostflow-agent:latest'
