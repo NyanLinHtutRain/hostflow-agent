@@ -66,6 +66,7 @@ async def chat(req: ChatRequest):
     """
     try:
         # Dynamically build the root agent with the room's context
+        print(f"📩 [CHAT] Incoming request for room: {req.room_context.get('slug')} | Session: {req.session_id}")
         root_agent = create_root_agent(req.room_context)
 
         # Create or reuse a session for this guest

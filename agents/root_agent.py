@@ -6,6 +6,7 @@ import os
 from google.adk.agents import Agent
 from agents.places_agent import create_places_agent
 from agents.escalation_agent import create_escalation_agent
+from tools.escalation_tool import escalate_to_host
 
 
 def create_root_agent(room_context: dict) -> Agent:
@@ -68,6 +69,7 @@ You are the AI Concierge for "{room_name}".
         model=os.getenv("GEMINI_MODEL", "gemini-2.0-flash"),
         description="The main concierge orchestrator that routes guest requests.",
         instruction=system_instruction,
+        tools=[escalate_to_host],  # Root can now escalate directly too
         sub_agents=[
             create_places_agent(address),
             create_escalation_agent(room_name),
