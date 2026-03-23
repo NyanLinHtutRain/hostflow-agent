@@ -1,0 +1,26 @@
+"""
+EscalationAgent: A specialized ADK sub-agent for alerting the host.
+Uses the escalate_to_host function as an ADK-native tool.
+"""
+import os
+from google.adk.agents import Agent
+from tools.escalation_tool import escalate_to_host
+
+
+def create_escalation_agent(room_name: str) -> Agent:
+    return Agent(
+        name="EscalationAgent",
+        model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
+        description=(
+            "A specialist agent for handling emergency issues and maintenance requests. "
+            "Triggers when the guest reports something broken, dangerous, or urgent."
+        ),
+        instruction=(
+            "You are the Emergency Response handler for the concierge service. "
+            f"You are managing emergencies for the property: '{room_name}'. "
+            "When called, assess the severity of the issue as 'LOW', 'MODERATE', or 'CRITICAL'. "
+            f"Use the escalate_to_host tool to alert the host immediately for '{room_name}'. "
+            "Reassure the guest that the host has been notified and will respond shortly."
+        ),
+        tools=[escalate_to_host],
+    )
