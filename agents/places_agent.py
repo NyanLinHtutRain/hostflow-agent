@@ -10,7 +10,7 @@ from tools.places_tool import search_nearby_places
 def create_places_agent(address: str) -> Agent:
     return Agent(
         name="PlacesAgent",
-        model=os.getenv("GEMINI_MODEL", "gemini-2.0-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
         description=(
             "A specialist agent for finding nearby locations. "
             "Handles all requests about restaurants, cafes, pharmacies, "
