@@ -65,7 +65,7 @@ You are the AI Concierge for "{room_name}".
 
     return Agent(
         name="ConciergeRootAgent",
-        model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-2.0-flash"),
         description="The main concierge orchestrator that routes guest requests.",
         instruction=system_instruction,
         sub_agents=[
