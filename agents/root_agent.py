@@ -68,7 +68,7 @@ You are the AI Concierge for "{room_name}".
 
     return Agent(
         name="ConciergeRootAgent",
-        model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash-latest"),
         description="The main concierge orchestrator that routes guest requests.",
         instruction=system_instruction,
         tools=[escalate_to_host],  # Root can now escalate directly too
