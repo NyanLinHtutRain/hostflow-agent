@@ -10,7 +10,7 @@ from tools.escalation_tool import escalate_to_host
 def create_escalation_agent(room_name: str) -> Agent:
     return Agent(
         name="EscalationAgent",
-        model=os.getenv("GEMINI_MODEL", "gemini-1.5-flash"),
+        model=os.getenv("GEMINI_MODEL", "gemini-2.5-flash"),
         description=(
             "A specialist agent for handling emergency issues and maintenance requests. "
             "Triggers when the guest reports something broken, dangerous, or urgent."
