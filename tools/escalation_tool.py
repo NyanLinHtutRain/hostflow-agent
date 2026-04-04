@@ -57,4 +57,5 @@ async def escalate_to_host(issue: str, severity: str, room_name: str) -> dict:
     if resp.status_code == 200:
         return {"status": "success", "message": "The host has been alerted via Telegram."}
     else:
+        print(f"[ERROR] Telegram API failed with {resp.status_code}: {resp.text}")
         return {"status": "error", "message": f"Telegram API returned {resp.status_code}"}
